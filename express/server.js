@@ -6,12 +6,12 @@ const homePagePath = path.join(import.meta.dirname, "public", "index.html");
 const staticPath = path.join(import.meta.dirname, "public");
 app.use(express.static(staticPath))
 
-app.get("/", (req, res)=>{
-    console.log(import.meta.dirname);
-    console.log(import.meta.filename);
+app.get("/profile/:username/blog/:slug", (req, res)=>{
+    const slug = req.params.slug.replaceAll("-"," ")
+    const username = req.params.username.replaceAll("-"," ")
     
-    
-    res.sendFile(homePagePath)
+    res.send(` <h1>Article ${slug} by ${username}</h1>`)
+
 })
 
 console.log(globalThis.process.env.PORT)
